@@ -197,8 +197,13 @@ const mostrar = (item) =>{
     }: item 
     )
   setLista(array)
-  swal("Actualización exitosa","info")
-  setNombre('')
+
+  swal({
+  title: "Actualizacion exitosa!",
+  icon: "info",
+  timer:"3000"
+  })
+    setNombre('')
     setApellido('')
     setFechan('')
     setEdad('')
