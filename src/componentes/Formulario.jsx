@@ -144,7 +144,17 @@ const editar = (item) =>{
 }
 
 // ---------------------------------------------------------------------------------------------------
+const mostrar = (item) =>{
+  
+  swal({
+    title: "Motivo de la consulta",
+    text: (item.motivo_),
+    timer: "5000",
+    button: null
+  });
+  
 
+}
 // ------------------              EDITAR REGISTRO         ------------------------
 
    const editar_registro =  async e =>{
@@ -163,8 +173,10 @@ const editar = (item) =>{
        correo_ : correo,
        cel_ : cel,
        motivo_ : motivo
+       
  
      })
+      
 
      const array =  lista.map(
       item => item.id === id ? {
@@ -185,6 +197,7 @@ const editar = (item) =>{
     }: item 
     )
   setLista(array)
+  swal("Actualización exitosa","info")
   setNombre('')
     setApellido('')
     setFechan('')
@@ -216,7 +229,7 @@ const eliminar = async id =>{
     await db.collection('registros').doc(id).delete()
     swal({
       title: "Correcto",
-      text: "Su registro ha sido guardado exitosamente.",
+      text: "Su registro ha sido eliminado con exito.",
       icon: "success",
       button: "Aceptar"
     })
@@ -234,6 +247,7 @@ const eliminar = async id =>{
 
 // ------------------               CANCELAR         ------------------------
 const cancelar = e =>{
+  swal("Ha cancelado la actualización.");
   setNombre('')
   setApellido('')
   setFechan('')
@@ -413,7 +427,7 @@ return (
       <th scope="col" class="text-center">Dirección</th>
       <th scope="col" class="text-center">Correo</th>
       <th scope="col" class="text-center">Celular</th>
-      <th scope="col" class="text-center">.</th>
+      <th scope="col" class="text-center">Motivo</th>
       <th scope="col" class="text-center">.</th>
       <th scope="col" class="text-center">.</th>
     </tr>
@@ -460,8 +474,7 @@ return (
               <spam className='lead'>{item.cel_}</spam>
               </td>
               <td class="text-center">
-              <a href="www.facebook.com" class="text-primary">Ver más...
-              </a>
+              <button className='btn btn-primary btn-sm float-end mx-6' type='submit'onClick={()=>mostrar(item)}> Detalles </button>
               </td>
               <td class="text-center">
               <button className='btn btn-danger btn-sm float-end mx-2' type='submit' onClick={()=>eliminar(item.id)}> Eliminar </button>
