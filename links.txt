@@ -1,0 +1,3 @@
+Amplify : https://main.d1pvdkzqgynaz5.amplifyapp.com/
+
+Netlify : https://deluxe-faloodeh-ef97cd.netlify.app/
